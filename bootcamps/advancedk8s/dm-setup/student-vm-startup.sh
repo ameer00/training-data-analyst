@@ -186,14 +186,5 @@ accounts:
   password: '${SA_JSON}'
   email: 1234@5678.com
 EOF
-    helm install -n adv-k8s charts/stable/spinnaker -f spinnaker-config.yaml --timeout 600
-    
-export GKE_EAST=$(gcloud container clusters list --zone us-east4-b --format='value(name)')
-export GKE_CENTRAL=$(gcloud container clusters list --zone us-central1-f --format='value(name)')
-export GKE_SPINNAKER=$(gcloud container clusters list --zone us-central1-f --format='value(name)')
-export PROJECT=$(gcloud info --format='value(config.project)')
-kubectx gke-spinnaker="gke_"$PROJECT"_us-central1-f_"$GKE_SPINNAKER
-kubectx gke-east="gke_"$PROJECT"_us-east4-b_"$GKE_EAST
-kubectx gke-central="gke_"$PROJECT"_us-central1-f_"$GKE_CENTRAL
-
+    helm install -n adv-k8s charts/stable/spinnaker -f spinnaker-config.yaml --timeout 60
 done
